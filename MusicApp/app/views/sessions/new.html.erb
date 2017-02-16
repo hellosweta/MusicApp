@@ -1,0 +1,14 @@
+<h2>Sign In</h2>
+
+    <%= link_to "Don't have an account?", new_user_url%>
+  <br>
+<form class="Sign In" action=" <%=session_url %>" method="post">
+  <label for="Username">Email Address</label>
+  <input type="user[email]" name="" value="">
+  <br>
+  <label for="Password">Password</label>
+  <input type="user[password]" name="" value="">
+  <br>
+
+  <input type="submit" name="" value="Submit">
+</form>
