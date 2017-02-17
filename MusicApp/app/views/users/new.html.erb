@@ -3,13 +3,15 @@
   <%= link_to "Already have an account?", new_session_url%>
 <br>
 
-<form class="Sign Up" action=" <%=users_url%>" method="post">
+<%= render "shared/errors"%>
 
+<form class="Sign Up" action="<%=users_url%>" method="post">
+  <%= auth_token %>
   <label for="Username">Email Address</label>
-  <input type="user[email]" name="" value="">
+  <input type="text" name="user[email]">
   <br>
   <label for="Password">Password</label>
-  <input type="user[password]" name="" value="">
+  <input type="password" name="user[password]">
   <br>
 
   <input type="submit" name="" value="Submit">

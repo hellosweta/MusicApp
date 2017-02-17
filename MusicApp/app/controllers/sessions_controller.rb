@@ -1,17 +1,23 @@
 class SessionsController < ApplicationController
+  before_action :require_no_user!, only: [:create, :new]
+
   def new
     render :new
   end
 
   def create
-    @user = User.find_by_user_credentials(params[:user][:email], params[:user][:password])
-    if @user
-      @user.reset_session_token
-      session[:sesssion_token] = @user.session_token
-      redirect_to user_url
+    user = User.find_by_credentials(params[:user][:email], params[:user][:password])
+    unless user.nil?
+      login_user!(user)
+      redirect_to bands_url
     else
-      redirect_to new_session_url
+      flash.now[:errors] = ["Incorrect username and/or password"]
+      render :new
+      # redirect_to new_session_url if flash[:errors], lose instance variables
     end
   end
 
+  def destroy
+    logout_user!
+  end
 end

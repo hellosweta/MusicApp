@@ -1,0 +1,21 @@
+<!-- Have a drop-down to select which Band recorded the Album. Use selected to default-select the appropriate Band in the drop-down.
+Use radio buttons to select whether the album is a live or studio album. Don't use a column named type, since Rails uses this for a special purpose and everything will break. Use checked to default select the appropriate value. -->
+
+<h1> Add New Album! </h1>
+
+<form  action="<%= albums_url %>" method="post">
+<%= auth_token %>
+<label for="AddAlbum">Band Name</label>
+
+<select id = "AddAlbum" name="album[band_id]">
+  <% @bands.each do |band| %>
+  <option value=" <%= band.id %>" "<%= band == @band ? "selected" : "" %>"> <%=band.name  %></option>
+<% end %>
+</select>
+
+<label for="AlbumName">Album Name</label>
+<input id=AlbumName, type="text" name="album[name]" value="">
+
+<input type="Submit" name="" value="New Album">
+
+</form>
